@@ -224,77 +224,77 @@ function QBCore.Functions.Notify(text, textype, length)
 end
 
 -- QBCore Default Progress Bar
--- function QBCore.Functions.Progressbar(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop, propTwo, onFinish, onCancel)
---     if GetResourceState('progressbar') ~= 'started' then error('progressbar needs to be started in order for QBCore.Functions.Progressbar to work') end
---     exports['progressbar']:Progress({
---         name = name:lower(),
---         duration = duration,
---         label = label,
---         useWhileDead = useWhileDead,
---         canCancel = canCancel,
---         controlDisables = disableControls,
---         animation = animation,
---         prop = prop,
---         propTwo = propTwo,
---     }, function(cancelled)
---         if not cancelled then
---             if onFinish then
---                 onFinish()
---             end
---         else
---             if onCancel then
---                 onCancel()
---             end
---         end
---     end)
--- end
+function QBCore.Functions.Progressbar(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop, propTwo, onFinish, onCancel)
+    if GetResourceState('progressbar') ~= 'started' then error('progressbar needs to be started in order for QBCore.Functions.Progressbar to work') end
+    exports['progressbar']:Progress({
+        name = name:lower(),
+        duration = duration,
+        label = label,
+        useWhileDead = useWhileDead,
+        canCancel = canCancel,
+        controlDisables = disableControls,
+        animation = animation,
+        prop = prop,
+        propTwo = propTwo,
+    }, function(cancelled)
+        if not cancelled then
+            if onFinish then
+                onFinish()
+            end
+        else
+            if onCancel then
+                onCancel()
+            end
+        end
+    end)
+end
 
 -- Ox Lib Progress Circle
-function QBCore.Functions.Progressbar(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop,
-                                      propTwo, onFinish, onCancel, icon)
-    -- Active Progressbar Check
-    if lib.progressActive() then
-        QBCore.Functions.Notify('You\'re already doing something!', 'error', 5000)
-        return
-    end
-    disable = {
-        move = disableControls?.disableMovement,
-        car = disableControls?.disableCarMovement,
-        mouse = disableControls?.disableMouse,
-        combat = disableControls?.disableCombat,
-    }
-    anim = {
-        dict = animation?.animDict,
-        clip = animation?.anim,
-        flags = animation?.flags,
-        scenario = animation?.scenario,
-    }
-    props = {
-        model = prop?.model,
-        bone = prop?.bone,
-        pos = prop?.coords,
-        rot = prop?.rotation,
-    }
+-- function QBCore.Functions.Progressbar(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop,
+--                                       propTwo, onFinish, onCancel, icon)
+--     -- Active Progressbar Check
+--     if lib.progressActive() then
+--         QBCore.Functions.Notify('You\'re already doing something!', 'error', 5000)
+--         return
+--     end
+--     disable = {
+--         move = disableControls?.disableMovement,
+--         car = disableControls?.disableCarMovement,
+--         mouse = disableControls?.disableMouse,
+--         combat = disableControls?.disableCombat,
+--     }
+--     anim = {
+--         dict = animation?.animDict,
+--         clip = animation?.anim,
+--         flags = animation?.flags,
+--         scenario = animation?.scenario,
+--     }
+--     props = {
+--         model = prop?.model,
+--         bone = prop?.bone,
+--         pos = prop?.coords,
+--         rot = prop?.rotation,
+--     }
 
-    if lib.progressCircle({ -- or lib.progressBar
-            duration = duration,
-            position = 'bottom',
-            label = label,
-            useWhileDead = useWhileDead,
-            canCancel = canCancel,
-            disable = disable,
-            anim = anim,
-            prop = props,
-        }) then
-        if onFinish then
-            onFinish()
-        end
-    else
-        if onCancel then
-            onCancel()
-        end
-    end
-end
+--     if lib.progressCircle({ -- or lib.progressBar
+--             duration = duration,
+--             position = 'bottom',
+--             label = label,
+--             useWhileDead = useWhileDead,
+--             canCancel = canCancel,
+--             disable = disable,
+--             anim = anim,
+--             prop = props,
+--         }) then
+--         if onFinish then
+--             onFinish()
+--         end
+--     else
+--         if onCancel then
+--             onCancel()
+--         end
+--     end
+-- end
 
 -- World Getters
 
